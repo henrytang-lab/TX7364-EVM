@@ -1,0 +1,1407 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+        td, th {
+            padding: 0.5em;
+            text-align : left;
+        }
+        th {
+            background-color : #EEEEEE;
+        
+        }
+        th.column1, td.column1 {
+            width : 10em;
+        }
+
+        th.column2, td.column2 {
+            width : 30em;
+        }
+
+        table {
+            width : 100%;
+            font-size: 0.9em;
+        }
+
+		.header_holder {
+			Width = 100%;
+			border = 0px solid green;
+			padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+        }
+
+        .front_matter_column1 {
+			width : 5em;
+			font-weight: bold;
+        }
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+        .total_column1, .total_column {
+            font-weight : bold;
+        }
+        .total_column1 {
+            text-align : left;
+        }
+        .warning, .error {
+            color : red;
+            font-weight : bold;
+        }
+        tr.onmouseout_odd {
+            background-color : #white;
+        }
+        tr.onmouseout_even { 
+            background-color : #FAFAFA;
+        }
+        tr.onmouseover_odd, tr.onmouseover_even { 
+            background-color : #EEEEEE;
+        } 
+        a:link, a:visited, .q a:link,.q a:active,.q {
+            color: #21489e; 
+        }
+        a:link.callback, a:visited.callback { 
+            color: #21489e;
+        }
+        p.contents_level1 {
+            font-weight : bold;
+            font-size : 110%;
+            margin : 0.5em;
+        }
+        p.contents_level2 {
+            position : relative;
+            left : 20px;
+            margin : 0.5em;
+        }
+    </style><script type="text/javascript">
+        function coordToMils(coord) {
+            var number = coord / 10000;
+            
+            if (number != number.toFixed(3))
+                number = number.toFixed(3);
+            
+            return number + 'mil'
+        }
+
+        function coordToMM(coord) {
+            var number = 0.0254 * coord / 10000;
+            
+            if (number != number.toFixed(4))
+                number = number.toFixed(4);
+            
+            return number + 'mm'
+        }
+    
+        function convertCoord(coordNode, units) {
+            for (var i = 0; i < coordNode.childNodes.length; i++) {
+                coordNode.removeChild(coordNode.childNodes[i]);
+            }
+
+            var coord = coordNode.getAttribute('value');
+            if (coord != null) {
+                if (units == 'mm') {
+                    textNode = document.createTextNode(coordToMM(coord));
+                    coordNode.appendChild(textNode);
+                } else if (units == 'mil') {
+                    textNode = document.createTextNode(coordToMils(coord));
+                    coordNode.appendChild(textNode);
+                }
+            }
+        }
+    
+        function convertUnits(unitNode, units) {
+            for (var i = 0; i < unitNode.childNodes.length; i++) {
+                unitNode.removeChild(unitNode.childNodes[i]);
+            }
+        
+            textNode = document.createTextNode(units); 
+            unitNode.appendChild(textNode);
+        }
+    
+        function changeUnits(radio_input, units) {
+            if (radio_input.checked) {
+            
+                var elements = document.getElementsByName('coordinate');
+                if (elements) {
+                    for (var i = 0; i < elements.length; i++) {
+                        convertCoord(elements[i], units);
+                    }
+                }
+    
+                var elements = document.getElementsByName('units');
+                if (elements) {
+                    for (var i = 0; i < elements.length; i++) {
+                        convertUnits(elements[i], units);
+                    }
+                }
+            }
+        }
+    </script></head>
+<body onload=""><img ALT="Altium" src="
+            file://C:\Users\Public\Documents\Altium\AD23\Templates\AD_logo.png
+        "><h1>Electrical Rule Check Report</h1>
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2/6/2024</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">4:13:21 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\Project Outputs for DC309\ERC\DC309.html" class="file"><acronym title="C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\Project Outputs for DC309\ERC\DC309.html">C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\Project Outputs for DC309\ERC\DC309.html</acronym></a></td>
+</tr>
+</table><a name="IDOQRXZ04FL5BXHYAMHTHIAAEPIJFR3WAW1KLB4NDL42BMIM0SIDXN"><table>
+<tr>
+<th class="column1">Class</th>
+<th class="column2">Document</th>
+<th class="column3">Message</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Clk_CPLD contains IO Pin and Output Pin objects (Pin U9-82, Pin U51-5).</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Component C281 0603ZC101KAT2A at 8500mil,9400mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_EVM_Hardware.SchDoc</td>
+<td class="column3">Component Logo5 WEEE logo at 10600mil,9200mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R16 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R20 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R24 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R25 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R26 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R27 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R28 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R29 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Component R30 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R32 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R34 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R36 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R37 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R40 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R41 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R42 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R65 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R77 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R78 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R86 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R100 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R103 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R105 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R111 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R116 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R118 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R119 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R122 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R123 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R125 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R126 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R127 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R128 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R131 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R132 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R133 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R138 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R140 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R144 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R146 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R147 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R148 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R149 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R150 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R151 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R163 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R165 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R169 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R173 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R174 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R233 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R234 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R235 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R236 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R242 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R243 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R244 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R245 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R246 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R247 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_PowerSupplies.SchDoc</td>
+<td class="column3">Component R248 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_PowerSupplies.SchDoc</td>
+<td class="column3">Component R249 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R252 RT0603BRD07150RL at 6900mil,2800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Component R253 RT0603BRD07150RL at 7200mil,2900mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R254 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Component R263 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Component R264 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Component R265 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R273 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R274 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Component R275 CRCW04021K00JNED at 8500mil,10200mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Component R276 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component R280 RT0603BRD07150RL at 3800mil,11100mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Component R293 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Component R295 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Component R366 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Component R368 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_Pinout.SchDoc</td>
+<td class="column3">Component R419 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_Pinout.SchDoc</td>
+<td class="column3">Component R420 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_Pinout.SchDoc</td>
+<td class="column3">Component R421 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_Pinout.SchDoc</td>
+<td class="column3">Component R422 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_Pinout.SchDoc</td>
+<td class="column3">Component R423 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_Pinout.SchDoc</td>
+<td class="column3">Component R424 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_Pinout.SchDoc</td>
+<td class="column3">Component R425 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_Pinout.SchDoc</td>
+<td class="column3">Component R426 Resistor: Component revision has inapplicable state</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Component TP6 at 19100mil,2600mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Component TP7 at 19100mil,2400mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Component TP8 at 19100mil,2200mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Component TP9 at 19100mil,2000mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Component TP14 at 18900mil,13400mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Component TP15 at 19000mil,8500mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Component TP16 at 19000mil,8300mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Component TP17 at 19000mil,8100mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP19 TESTPOINT at 12100mil,14200mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP20 TESTPOINT at 12900mil,6500mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP21 TESTPOINT at 7200mil,5300mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP22 TESTPOINT at 12000mil,10100mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP24 TESTPOINT at 12100mil,10200mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP25 TESTPOINT at 12000mil,10000mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP26 TESTPOINT at 12000mil,9800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP27 TESTPOINT at 12000mil,9600mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP29 TESTPOINT at 12000mil,9300mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Component TP30 at 19000mil,7900mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP31 TESTPOINT at 12000mil,9200mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP32 TESTPOINT at 12000mil,9100mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP33 TESTPOINT at 12000mil,9000mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP34 TESTPOINT at 12000mil,8900mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP35 TESTPOINT at 12000mil,8800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP36 TESTPOINT at 12000mil,8700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP37 TESTPOINT at 12000mil,8600mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP38 TESTPOINT at 11600mil,11800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Component TP39 TESTPOINT at 11600mil,11700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_PowerSupplies.SchDoc</td>
+<td class="column3">Component TP44 TESTPOINT at 2900mil,1700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_PowerSupplies.SchDoc</td>
+<td class="column3">Component TP45 TESTPOINT at 3200mil,1700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_PowerSupplies.SchDoc</td>
+<td class="column3">Component TP46 TESTPOINT at 3400mil,1700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_PowerSupplies.SchDoc</td>
+<td class="column3">Component TP47 TESTPOINT at 3700mil,1700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP48 TESTPOINT at 18200mil,11600mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP49 TESTPOINT at 18200mil,10700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP53 TESTPOINT at 4100mil,15700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP55 TESTPOINT at 4100mil,14800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP56 TESTPOINT at 4100mil,13700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP57 TESTPOINT at 11200mil,13700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP58 TESTPOINT at 14700mil,13700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Component TP59 Test Point at 8600mil,11400mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP60 TESTPOINT at 4100mil,12800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP61 TESTPOINT at 11200mil,12800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP62 TESTPOINT at 14700mil,12800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP63 TESTPOINT at 14700mil,11600mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP64 TESTPOINT at 14700mil,10700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP65 TESTPOINT at 11200mil,7300mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP66 TESTPOINT at 11200mil,6400mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP67 TESTPOINT at 4100mil,5000mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP68 TESTPOINT at 4100mil,4100mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP69 TESTPOINT at 12800mil,15700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP70 TESTPOINT at 12800mil,14600mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP71 TESTPOINT at 3800mil,13200mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP72 TESTPOINT at 3500mil,12200mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP73 TESTPOINT at 800mil,10900mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP74 TESTPOINT at 3800mil,10900mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP75 TESTPOINT at 800mil,9800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP76 TESTPOINT at 3800mil,9800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP77 TESTPOINT at 800mil,8400mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP78 TESTPOINT at 3800mil,8400mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP79 TESTPOINT at 15800mil,8400mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP80 TESTPOINT at 18800mil,8400mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP81 TESTPOINT at 800mil,7300mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP82 TESTPOINT at 3800mil,7300mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP83 TESTPOINT at 15800mil,7300mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP84 TESTPOINT at 18800mil,7300mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP85 TESTPOINT at 14700mil,15700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP86 TESTPOINT at 14700mil,14800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP87 TESTPOINT at 18200mil,13700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP88 TESTPOINT at 18200mil,12800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP89 TESTPOINT at 600mil,11600mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP90 TESTPOINT at 7700mil,11600mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP91 TESTPOINT at 600mil,10700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP92 TESTPOINT at 7700mil,10700mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP93 TESTPOINT at 11200mil,9500mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP94 TESTPOINT at 11200mil,8600mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP95 TESTPOINT at 600mil,7300mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP96 TESTPOINT at 7700mil,7300mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP97 TESTPOINT at 14700mil,7300mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP98 TESTPOINT at 600mil,6400mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP99 TESTPOINT at 7700mil,6400mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_TXOUT.SchDoc</td>
+<td class="column3">Component TP100 TESTPOINT at 14700mil,6400mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP101 TESTPOINT at 800mil,13200mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP102 TESTPOINT at 6800mil,13200mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP103 TESTPOINT at 9800mil,13200mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP104 TESTPOINT at 12800mil,13200mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP105 TESTPOINT at 800mil,12100mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP106 TESTPOINT at 6800mil,12100mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP107 TESTPOINT at 9800mil,12100mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP108 TESTPOINT at 12800mil,12100mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP109 TESTPOINT at 12800mil,10900mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP110 TESTPOINT at 15800mil,10900mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP111 TESTPOINT at 18800mil,10900mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP112 TESTPOINT at 12800mil,9800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP113 TESTPOINT at 15800mil,9800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP114 TESTPOINT at 18800mil,9800mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP115 TESTPOINT at 3800mil,6000mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Component TP116 TESTPOINT at 3800mil,4900mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Component U36 SN74LVC1G14DBVR at 6200mil,8500mil: Component revision is Out of Date.</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_RXIN.SchDoc</td>
+<td class="column3">Floating Net Label \ at (3900mil,12100mil)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Incorrect link between project variant "001" and schematic component Component R252 RT0603BRD07150RL</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Incorrect link between project variant "001" and schematic component Component R253 RT0603BRD07150RL</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Incorrect link between project variant "001" and schematic component Component R280 RT0603BRD07150RL</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net CLK_CDC_M has no driving source (Pin R36-2, Pin R279-2, Pin U33-3)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net CLK_CDC_P has no driving source (Pin R174-2, Pin R279-1, Pin U33-2)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net CLK_SYNC_LATCH has no driving source (Pin R244-2, Pin U42-1, Pin U42-5)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net CRYSTAL_CLK_N has no driving source (Pin C124-1, Pin R278-1, Pin U12-26)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net CRYSTAL_CLK_P has no driving source (Pin C125-1, Pin R278-2, Pin U12-27)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Net FTDI_D_N has no driving source (Pin R145-2, Pin U7-7)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Net FTDI_D_P has no driving source (Pin R141-2, Pin U7-8)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net LMK_CLK_N has no driving source (Pin R119-2, Pin R277-1, Pin U12-15)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net LMK_CLK_P has no driving source (Pin R118-2, Pin R277-2, Pin U12-14)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net LMK_EN has no driving source (Pin R148-1, Pin R149-2, Pin U13-1)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_PowerSupplies.SchDoc</td>
+<td class="column3">Net NetC11_2 has no driving source (Pin C11-2, Pin C25-2, Pin R7-2, Pin R10-2, Pin U39-A3)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_PowerSupplies.SchDoc</td>
+<td class="column3">Net NetC13_2 has no driving source (Pin C13-2, Pin R9-1, Pin R12-2, Pin U3-A3)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_Pinout.SchDoc</td>
+<td class="column3">Net NetC26_1 has no driving source (Pin C26-1, Pin U1-J13)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_Pinout.SchDoc</td>
+<td class="column3">Net NetC27_1 has no driving source (Pin C27-1, Pin U1-J14)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Net NetC37_2 has no driving source (Pin C37-2, Pin R135-1, Pin R136-2, Pin U15-4)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_PowerSupplies.SchDoc</td>
+<td class="column3">Net NetC170_2 has no driving source (Pin C170-2, Pin R250-1, Pin R251-2, Pin U34-A3)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Net NetC281_2 has no driving source (Pin C281-2, Pin R275-2, Pin U35-2)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Net NetR129_2 has no driving source (Pin R129-2, Pin U7-6)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_FTDI.SchDoc</td>
+<td class="column3">Net NetR130_2 has no driving source (Pin R130-2, Pin U7-11)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net NetR140_2 has no driving source (Pin R140-2, Pin U12-9)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net NetR144_2 has no driving source (Pin R144-2, Pin U12-32)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net NetR146_2 has no driving source (Pin R146-2, Pin U12-16)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net NetR147_2 has no driving source (Pin R147-2, Pin U12-13)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net NetR151_2 has no driving source (Pin R151-2, Pin U12-31)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net NetR236_2 has no driving source (Pin R236-2, Pin U12-11)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net NetR245_2 has no driving source (Pin R245-2, Pin U33-13)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net NetR246_2 has no driving source (Pin R246-2, Pin U33-15)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net NetR247_1 has no driving source (Pin R247-1, Pin U33-16)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Net NetR264_1 has no driving source (Pin R264-1, Pin U41-3)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Net NetR293_1 has no driving source (Pin R293-1, Pin TP59-1, Pin U35-1)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Net NetR296_2 has no driving source (Pin R296-2, Pin U4-4)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Net NetR366_1 has no driving source (Pin R366-1, Pin U41-2)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Net NetR368_2 has no driving source (Pin R368-2, Pin U18-1)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CLKGen.SchDoc</td>
+<td class="column3">Net OSC_250M_EN has no driving source (Pin R147-1, Pin R150-1, Pin R173-2, Pin Y1-1)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net RST has no driving source (Pin R125-2, Pin R128-2, Pin U1-E8)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net SCLKM has no driving source (Pin R91-1, Pin R100-2, Pin R165-1, Pin R234-1, Pin U1-H14)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net SCLKP has no driving source (Pin R78-1, Pin R86-2, Pin R91-2, Pin R127-1, Pin U1-H13)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net SDINM0 has no driving source (Pin R109-1, Pin R116-2, Pin R169-1, Pin R235-1, Pin U1-E14)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net SDINM1 has no driving source (Pin R38-1, Pin R41-2, Pin R111-1, Pin R163-1, Pin U1-F14)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net SDINP0 has no driving source (Pin R103-1, Pin R105-2, Pin R109-2, Pin R254-1, Pin U1-E13)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net SDINP1 has no driving source (Pin R16-2, Pin R32-1, Pin R34-2, Pin R38-2, Pin U1-F13)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net SENM has no driving source (Pin R67-1, Pin R77-2, Pin R233-1, Pin U1-G14)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net SENP has no driving source (Pin R42-1, Pin R65-2, Pin R67-2, Pin R126-1, Pin U1-G13)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_External_Sync.SchDoc</td>
+<td class="column3">Net SYNC_UNLATCHED has no driving source (Pin R276-1, Pin R295-1, Pin U42-2)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net SYNCM has no driving source (Pin R21-1, Pin R23-1, Pin R31-2, Pin R274-1, Pin U1-K14)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net SYNCP has no driving source (Pin R19-2, Pin R21-2, Pin R23-2, Pin R273-1, Pin U1-K13)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net TCK has no driving source (Pin C162-2, Pin R24-2, Pin R27-1, Pin U9-24)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net TDI has no driving source (Pin C165-2, Pin R132-2, Pin R133-1, Pin U9-23)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net TDO_FROM_CPLD has no driving source (Pin R28-1, Pin TP9-1, Pin U17-11, Pin U17_1-11)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">Net TMS has no driving source (Pin C164-2, Pin R40-2, Pin R131-1, Pin U9-22)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">SDOUT contains IO Pin and Output Pin objects (Pin U9-49, Pin U44-9, Pin U1-P10).</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Warning</td>
+<td class="column2">DC309A_CPLD.SchDoc</td>
+<td class="column3">SYNCHRONIZER contains IO Pin and Output Pin objects (Pin U9-1, Pin U18-4).</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

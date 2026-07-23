@@ -1,0 +1,11 @@
+Record=TopLevelDocument|FileName=DC309A_CLKGen.SchDoc|SheetNumber=7
+Record=NoMainPathDocument|SourceDocument=DC309A_CLKGen.SchDoc|FileName=DC309A_CoverPage_Compact.SchDoc|SheetNumber=1
+Record=NoMainPathDocument|SourceDocument=DC309A_CLKGen.SchDoc|FileName=DC309A_CPLD.SchDoc|SheetNumber=9
+Record=NoMainPathDocument|SourceDocument=DC309A_CLKGen.SchDoc|FileName=DC309A_EVM_Hardware.SchDoc|SheetNumber=11
+Record=NoMainPathDocument|SourceDocument=DC309A_CLKGen.SchDoc|FileName=DC309A_External_Sync.SchDoc|SheetNumber=8
+Record=NoMainPathDocument|SourceDocument=DC309A_CLKGen.SchDoc|FileName=DC309A_FTDI(DNI).SchDoc|SheetNumber=10
+Record=NoMainPathDocument|SourceDocument=DC309A_CLKGen.SchDoc|FileName=DC309A_FTDI.SchDoc|SheetNumber=6
+Record=NoMainPathDocument|SourceDocument=DC309A_CLKGen.SchDoc|FileName=DC309A_Pinout.SchDoc|SheetNumber=2
+Record=NoMainPathDocument|SourceDocument=DC309A_CLKGen.SchDoc|FileName=DC309A_PowerSupplies.SchDoc|SheetNumber=5
+Record=NoMainPathDocument|SourceDocument=DC309A_CLKGen.SchDoc|FileName=DC309A_RXIN.SchDoc|SheetNumber=3
+Record=NoMainPathDocument|SourceDocument=DC309A_CLKGen.SchDoc|FileName=DC309A_TXOUT.SchDoc|SheetNumber=4

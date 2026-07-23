@@ -1,0 +1,713 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+        h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+            padding: 0.3em;
+        }
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+        body {
+			font-family : segoe ui;
+        }
+
+        td, th {
+            padding: 0.5em;
+			text-align : left;
+			width: 10em;
+        }
+        th {
+			background-color : #EEEEEE;
+
+        }
+        th.column1, td.column1 {
+            text-align: left;
+            width : auto;
+        }
+        table {
+            width : 100%;
+			font-size: 0.9em;
+        }
+        
+        .DRC_summary_header {                           
+            padding-bottom : 0.1em;
+            border : 0px solid black;                           
+            width: 100%;
+			align: left;
+        }
+
+        .DRC_summary_header_col1, 
+        .DRC_summary_header_col2, 
+        .DRC_summary_header_col3  {
+            color : black;
+            font-size:100%;
+                        padding : 0em;
+            padding-top : 0.2em;
+            padding-bottom 0.2em;
+            border : 0px solid black;
+            vertical-align: top;
+			text-align: left;
+        }
+        
+        .DRC_summary_header_col1 {                              
+			font-weight: bold;
+			width: 8em;
+        }
+
+        .DRC_summary_header_col2 {       
+			width: 0.1em;
+		
+        }
+
+        .DRC_summary_header_col3 {       
+			width : auto;
+        }
+
+        .header_holder  {
+        Width = 100%;
+        border = 0px solid green;
+        padding = 0;
+        }
+        
+        
+        .front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+                {
+            left:0;
+            top:0;
+			padding: 0em;
+            padding-top : 0.1em;            
+            border : 0px solid black;
+            width : 100%;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        .front_matter_column1 {
+            width : 8em;   
+			font-weight: bold;
+        }
+        
+        .front_matter_column2 {
+            width: 0.1em;
+        }
+
+        .front_matter_column3 {
+            width         : auto;  
+        }
+        
+        .total_column1, .total_column {
+            font-weight : bold;
+        }
+        .total_column1 {
+			text-align : left;
+        }
+        .warning, .error {
+            color : red;
+            font-weight : bold;
+        }
+        tr.onmouseout_odd {
+			background-color : #white;
+        }
+        tr.onmouseout_even { 
+			background-color : #FAFAFA;
+        }
+        tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+        } 
+        a:link, a:visited, .q a:link,.q a:active,.q {
+            color: #21489e; 
+        }
+        a:link.callback, a:visited.callback { 
+            color: #21489e; 
+        }
+        p.contents_level1 {
+            font-weight : bold;
+            font-size : 110%;
+            margin : 0.5em;
+        }
+        p.contents_level2 {
+            position : relative;
+            left : 20px;
+            margin : 0.5em;
+        }
+    </style><script type="text/javascript">
+        function coordToMils(coord) {
+            var number = coord / 10000;
+            
+            if (number != number.toFixed(3))
+                number = number.toFixed(3);
+
+            return number + 'mil'
+        }
+
+        function coordToMM(coord) {
+            var number = 0.0254 * coord / 10000;
+            
+            if (number != number.toFixed(4))
+                number = number.toFixed(4);
+            
+            return number + 'mm'
+        }
+    
+        function convertCoord(coordNode, units) {
+            for (var i = 0; i < coordNode.childNodes.length; i++) {
+                coordNode.removeChild(coordNode.childNodes[i]);
+            }
+
+            var coord = coordNode.getAttribute('value');
+            if (coord != null) {
+                if (units == 'mm') {
+                    textNode = document.createTextNode(coordToMM(coord));
+                    coordNode.appendChild(textNode);
+                } else if (units == 'mil') {
+                    textNode = document.createTextNode(coordToMils(coord));     
+                    coordNode.appendChild(textNode);    
+                }
+            }
+        }
+    
+        function convertUnits(unitNode, units) {
+            for (var i = 0; i < unitNode.childNodes.length; i++) {
+                unitNode.removeChild(unitNode.childNodes[i]);       
+            }
+        
+            textNode = document.createTextNode(units); 
+            unitNode.appendChild(textNode);
+        }
+    
+        function changeUnits(radio_input, units) {
+            if (radio_input.checked) {
+            
+                var elements = document.getElementsByName('coordinate');
+                if (elements) {
+                    for (var i = 0; i < elements.length; i++) {
+                        convertCoord(elements[i], units);
+                    }
+                }
+    
+                var elements = document.getElementsByName('units');
+                if (elements) {
+                    for (var i = 0; i < elements.length; i++) {
+                        convertUnits(elements[i], units);
+                    }
+                }
+            }
+        }
+    </script></head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD23\Templates\AD_logo.png
+        "><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2/6/2024</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">4:13:03 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:08</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc" class="file"><acronym title="C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc">C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Waived Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">58</td></tr>
+</table>
+</td>
+</table><a name="ID0EWDC5YXXOACDIY0FIQCKOHV5CVH5EDZVESP5UOHRW5TYSNVG12E"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDT4J15IFN31K5IOLOD4KQVEDJLB4S2DBXVPE15VDG3KWWBW4YVUGO">Clearance Constraint (Gap=21mil) (InNetClass('MHV')),(OnLayer('Bottom Layer'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVKXIE1ZN5HWIMXD4CCXGJYGQIOIFJE0JKXU1KGB3GSCS1VNSEIE">Clearance Constraint (Gap=48mil) (InNetClass('MHV')),(InNetClass('PHV') And OnLayer('Top Layer'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3WDTERHUDCWUMNFEIPQYMNMZSBHU2R0ZT0DXEVCNZHZHEEBEA4SB">Clearance Constraint (Gap=48mil) (InNetClass('MHV')),(InNetClass('PHV') And OnLayer('Bottom Layer'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCQOARX00DG3GPT2NGQFTFGXXKXEPNAQ3TMQ4GTMKRNA3EJ1J1I">Clearance Constraint (Gap=23mil) (InNetClass('MHV')),(OnLayer('Top Layer'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQ4JGCG4C3AX2KRLKKAUVYHYV2NLD42FFBXHCTKP13WCMA00X4TUJ">Clearance Constraint (Gap=23mil) (InNetClass('PHV')),(OnLayer('Top Layer'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTHLFX21H1KZSB4UYT3EHYGZZIYET5LOWQYQB3LMIBPQXRIS223H">Clearance Constraint (Gap=8mil) (WithinRoom('RoomDefinition')and WithinRoom('RoomDefinition_1')and WithinRoom('RoomDefinition_2')and WithinRoom('RoomDefinition_3')and WithinRoom('RoomDefinition_4')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDDM0OZ1ESVP0ENKDXYFZKOJFHRJI1MIE3VNZGTVN2DZWCE0GC3FDL">Clearance Constraint (Gap=8mil) (WithinRoom('RoomDefinition_1')OR WithinRoom('RoomDefinition_2')OR WithinRoom('RoomDefinition_3')OR WithinRoom('RoomDefinition_4')OR WithinRoom('RoomDefinition_5')OR WithinRoom('RoomDefinition_6')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDAD2ZF0M5BCM3GYHLOFEGX5FCQE0YNMEXGZVWOVFTKJOTJEDXUOIM">Clearance Constraint (Gap=21mil) (InNetClass('PHV')),(OnLayer('Bottom Layer'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEEGU1HFMOTJ2I1FEVLYNOMWGF3QLUOCCLPQFJNTSMYN5UI1MSMI">Clearance Constraint (Gap=4mil) (WithinRoom('DC309_CPLD')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVLHXEUF3FJN2BESMD2VLZDXOVA1WPL0NJZ10NTZGHQKG4ZYS4J">Clearance Constraint (Gap=8mil) (InNet('USB_D_N')),(InNet('USB_D_P'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPMPEDZDPWVBJGSDSVAJ0ZXPRBBPHZFJV5AM4R2CI54V0ZUTAMVOH">Clearance Constraint (Gap=4mil) (WithinRoom('MHR054A_PowerSupplies')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCUGW5ZBUNFZCCIEGYBDAKC3YUC1EC2RG35FTJPI4J2GSZ3CW0C5B">Clearance Constraint (Gap=15mil) (IsKeepOut),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLO2KVGVFRIG1YBW4DJICSU0ALTWSPNC3EDXESSRKUOELYLU5IG">Clearance Constraint (Gap=8mil) (InNetClass('High voltage')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJWDTGM1LFJT4LFLAIRDXHZJBADBQ0RKDVTZAXRLLP5YXACUHLOND">Clearance Constraint (Gap=8mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRTPGLTDB4SDRMVA5DBVAPWM2GH4LJSH20FYSYULHCMKQCSNS3GCG">Clearance Constraint (Gap=8mil) (WithinRoom('RoomDefinition_U6')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJMTAYJSNGS4WNDHAGQM1I2E4ELUJBPT2SXGD3DCRDPUIVQ13E41O">Clearance Constraint (Gap=8mil) (InNetClass('USB')),(InNet('GND'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIRVXUWZ0EWXPPB4SDL1ZSFUSNMLIBGNQH24FJ0OYFKKBFW5SHZWC">Clearance Constraint (Gap=0mil) (IsKeepOut and InComponentClass('FiducialMark')),(IsPad and InComponentClass('FiducialMark'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3Z4JZSEAMGMGCOOXKZLEHDXDRBBAFG4JV1JAZNOVSR5U3NMR4UO">Clearance Constraint (Gap=8mil) (InDifferentialPairClass('90ohm')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHXEUB20DNLPIMSJJEHXMFV1SIHTLYF3MWH2PITRFYZNMYPVJIZI">Clearance Constraint (Gap=8mil) (InNetClass('MHV')),(InNet('GND'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5QZXA1G3BTW5LDZIE353IDAKVGF5QKDENERQGXF5UUGMIXO3EHSC">Clearance Constraint (Gap=8mil) (InNetClass('PHV')),(InNet('GND'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWHILEQ3QWQSPE22RB55MWRSRNDMZFRNN2FQGITOZCSIUKKMLKBKG">Clearance Constraint (Gap=8mil) (InNetClass('MHV')),(InNet('GND'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNM3PKTXR0SQPCYBDCCAHSPJAAEB0VQCRUNJE44DMOSVSGEPCLSLI">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAVZSAJKAZ5TQIU15PUKJ55PCUN0F4KLAVE0TYYNHLVGIRIYN4Y">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0A0SCSBI5IFDBAWSLEZRRBMVEIS5BE25NEVFMFMZQHJBZ0NE52VF">Un-Connected Pin Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGNYG34HJLJCJJP0HNPTQNPW24F5OF04IYY4XNTKW5NDKCGQKFSBE">Width Constraint (Min=4mil) (Max=20mil) (Preferred=4.4mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID54AC1U0ESCELHMAPUCVRU40NJB2XIVGRTMP4HQM5ACJPP2VEP14K">Width Constraint (Min=15mil) (Max=50mil) (Preferred=20mil) (InNetClass('PWR'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDE2VAOTJ5ZOMVCVZIV13HHZOFNPPWM4DL1ELJXLLEWZWH0GBSZYID">Width Constraint (Min=3mil) (Max=50mil) (Preferred=6mil) (withinroom('RoomDefinition'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRKUTZMMZ1SR4O4BSP0NV1YZDUHE1UWMDNS5ZADD5LOO40QLEZQMG">Width Constraint (Min=7.5mil) (Max=11mil) (Preferred=10mil) (InNetClass('50_OHM'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID35FMXKJMMDUAM3D1KDTCXLV1IFG25AOTD4KX52NT5XD3LYY4BH2H">Routing Layers(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSJUYS0WY5U5ECABERXZBC0L1RFGHT0ADSJTFUGOMHWOIETHYDRLC">Routing Via (MinHoleWidth=6mil) (MaxHoleWidth=12mil) (PreferredHoleWidth=10mil) (MinWidth=15mil) (MaxWidth=24mil) (PreferedWidth=20mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUAT50SKFTUMFNVCTIZL4FGGBXJIC0NJ3KZL0Y3ERSSMIM5QWERML">Routing Via (MinHoleWidth=6mil) (MaxHoleWidth=12.992mil) (PreferredHoleWidth=7.874mil) (MinWidth=16mil) (MaxWidth=23.622mil) (PreferedWidth=19.685mil) (IsVia and InAnyComponent)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPNVVZZVUXVHXKVXUKJROWW5WFMGOW3TOI55CNGIJ1154A0QFULKO">Differential Pairs Uncoupled Length using the Gap Constraints (Min=8mil) (Max=50mil) (Prefered=8mil)  and Width Constraints (Min=4mil) (Max=50mil) (Prefered=4mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZS2GTJPKEBR0NO513OX4AR45MFACF40YD2GJV1JCWZZT2R5IJECN">Differential Pairs Uncoupled Length using the Gap Constraints (Min=10mil) (Max=10mil) (Prefered=10mil)  and Width Constraints (Min=15mil) (Max=15mil) (Prefered=15mil) (InDifferentialPairClass('RX_DIFF'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSFP1QKBUYF3HXIBMSL0BT35AM14TYATZDBTI3DZ4RM4DOVXEVDF">Differential Pairs Uncoupled Length using the Gap Constraints (Min=5mil) (Max=5mil) (Prefered=5mil)  and Width Constraints (Min=6mil) (Max=6mil) (Prefered=6mil) (InDifferentialPairClass('90 ohm'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID15VGCUYVRKNNITXRV501NJQRGDHIJETAOBFLPNNUONPAEK4T4Y4C">Power Plane Connect Rule(Relief Connect )(Expansion=10mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDXDSPV5ATMDIDDGTT1BAYEZ13AHDERTSKATJOFSLWD5DXODNSR0AJ">Minimum Annular Ring (Minimum=3mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3V3JKNLTBB4FK4RH32WFATN04MPRYNPKDK42INNCPSOUKKNEOFIP">Minimum Annular Ring (Minimum=3mil) (IsVia and InAnyComponent)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPDQ3JIYFKI0MHHZRJFZJSMT3WO4KWIFTGCPPFIBYCOINIGXYIQZI">Acute Angle Constraint (Minimum=20.000) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQBSTV2RYQBJUKQMCWGUSTJNSHIJQJUXZD4Y5DTH5SZBHUYQGRUAN">Silk To Solder Mask (Clearance=0mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHHJIAYCQSZ4JKSTTIOFTKQYNJLDXNEM2KHPFT0IRFFGKFY2OXAQF">Silk To Solder Mask (Clearance=0mil) ((IsPad or IsFill or IsRegion) and InAnycomponent),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAI4FZIHA14BYD1X0OAUE04LG5BTLBKBAHC2LWJBURYXKWMRZA24H">Silk to Silk (Clearance=0mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQE3W2HTJXWKGKDE5CN4SNR0V1MOGCN0LKUKIDGBMS1QJGLW2VLQH">Silk to Silk (Clearance=0mil) ((HasFootprint('Pb-Free_Overlay_Medium') OR HasFootprint('Pb-Free_Overlay_Small'))),((HasFootprint('Pb-Free_Overlay_Medium') OR HasFootprint('Pb-Free_Overlay_Small')))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDL15HMPZYSPYMDPL5TDOSBDV3WF0HXG5LSLL0BGI0VED4DUQ1UJYO">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZKCDBBGV1YWKLO3NRAOH4XSQGPOWG33RKNVUIJHE24EPJJJEKCD">Matched Lengths(Tolerance=50mil) (InxSignalClass('SPI_SIGNLAS'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJHQ5WVUCRZEULKGONBK3HLY3ZJYFPVY21G4RHJHZTEI1OPKKN3FE">Matched Lengths(Tolerance=100mil) (InDifferentialPairClass('RX_DIFF'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDH53VLXKMQJHTOYRA5P2AQUP25JGJHKPILGCZV1QAVR4HNZJRURB">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = 5mil ) (HasFootprint('0201*') or HasFootprint('0402*') or HasFootprint('0508') or HasFootprint('0603*') or HasFootprint('0612') or HasFootprint('0805*') or HasFootprint('0815*') or HasFootprint('0830*') or HasFootprint('1206*') or HasFootprint('1210*') or HasFootprint('1808*') or HasFootprint('1812*') or HasFootprint('1825*') or HasFootprint('2010*') or HasFootprint('2220*') or HasFootprint('2225*') or HasFootprint('2512*') or HasFootprint('2728*') or HasFootprint('3518*')),(HasFootprint('0201*') or HasFootprint('0402*') or HasFootprint('0508') or HasFootprint('0603*') or HasFootprint('0612') or HasFootprint('0805*') or HasFootprint('0815*') or HasFootprint('0830*') or HasFootprint('1206*') or HasFootprint('1210*') or HasFootprint('1808*') or HasFootprint('1812*') or HasFootprint('1825*') or HasFootprint('2010*') or HasFootprint('2220*') or HasFootprint('2225*') or HasFootprint('2512*') or HasFootprint('2728*') or HasFootprint('3518*')) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1UOI54J5VHI5NVWZCBTD5LA0IO4DLJ15TN0UF2IM5KTUVNMA1EDN">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = Infinite ) (InComponentClass('Mounting Holes')),(All) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5EJEA2DEO2GMM5IBRJDPNW3U3PVGZHJ1HCLJNFJNQK5AC5TK4NNN">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = 5mil ) (IsThruComponent),(IsSMTComponent) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0S0GCOEILKHTPV0BLF1VCVWMLFJ52OGL1BRCD2LY541HIY2MWEQL">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = 5mil ) (All),(All) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDYZQF0HSHGVL4NXSO2QW11M2ZTDWQL01AAF5NHVGDLZHUXJTDJ3WO">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = 5mil ) (IsThruComponent),(IsThruComponent) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBFE34HGD5W5KEMDPHPH5K5CAEOTX5LL3G4Z0TELRHLIMCFFMQFI">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = 5mil ) (InComponentClass('Mounting Holes')),(InComponentClass('FiducialMark')) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHQXH2W4ELYBCIJL4COP23M0SYOM5KJKKMUMNRNKSR54IYLZ2HFCI">Component Clearance Constraint ( Horizontal Gap = 0mil, Vertical Gap = 0mil ) (InComponentClass('Test Points')),(InComponentClass('Test Points')) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDDRC1SV2NBWRGB2G1F0QNYBEIXHJSZVYCCLAHI3MMP131WGWEM4IF">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = 5mil ) (InComponentClass('Header')),(InComponentClass('Shunt')) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWFANPBKPKZ0UH1N3CAWMEZ5NMBFIBC5PDBGQ4QLM4M12FMBEQKZE">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = 5mil ) ((HasFootprint('NY PMS 440 0025 PH'))),((HasFootprint('Keystone_1902C'))) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID20GWNCWZZDBGHW5BLXTPMKXJ3OGJPAJJU2INWENIADK1KWALX0EP">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = 5mil ) (InComponentClass('Logo')),(All) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Waived Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDL2FED3XSAFQHERL2FJHY3PCQPERV1SYZN1JQY0MKWFQVPC1J1BOI">Differential Pairs Uncoupled Length using the Gap Constraints (Min=8mil) (Max=50mil) (Prefered=8mil)  and Width Constraints (Min=4mil) (Max=50mil) (Prefered=4mil) (All)</a></td>
+<td class="column2">35</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAR1QNON5BCJ2KPW4Z2OXGHZEDC2ULDVP4KREGWL5MYJCYNE5LFFN">Matched Lengths(Tolerance=100mil) (InDifferentialPairClass('RX_DIFF'))</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDAM4GRFBFAJQ2NOPL4IJKWVNBZCOK2AE4KIP0IDIYJ0R4TKUCB30I">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = 5mil ) (HasFootprint('0201*') or HasFootprint('0402*') or HasFootprint('0508') or HasFootprint('0603*') or HasFootprint('0612') or HasFootprint('0805*') or HasFootprint('0815*') or HasFootprint('0830*') or HasFootprint('1206*') or HasFootprint('1210*') or HasFootprint('1808*') or HasFootprint('1812*') or HasFootprint('1825*') or HasFootprint('2010*') or HasFootprint('2220*') or HasFootprint('2225*') or HasFootprint('2512*') or HasFootprint('2728*') or HasFootprint('3518*')),(HasFootprint('0201*') or HasFootprint('0402*') or HasFootprint('0508') or HasFootprint('0603*') or HasFootprint('0612') or HasFootprint('0805*') or HasFootprint('0815*') or HasFootprint('0830*') or HasFootprint('1206*') or HasFootprint('1210*') or HasFootprint('1808*') or HasFootprint('1812*') or HasFootprint('1825*') or HasFootprint('2010*') or HasFootprint('2220*') or HasFootprint('2225*') or HasFootprint('2512*') or HasFootprint('2728*') or HasFootprint('3518*')) </a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDKZXMBY0M5XDMDFEINS2VEKXDDBNIOWFBG2WSVYGQADN2OTTLXN0M">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = 5mil ) (IsThruComponent),(IsSMTComponent) </a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJ0ROE1QT53NAPT32F2PXMB0JFDQCBTNQQGFTLJBCZHTEZYIRFBXD">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = 5mil ) (All),(All) </a></td>
+<td class="column2">17</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">58</td>
+</tr>
+</table><br><a name="IDDDF443C1C4U1KPS5IFAHNOUGF1NU23D4DTOZWGBP4CD3QHKW2JC"><h2>Rule Violations</h2></a><a name="ID34KZ00LQICEBLJURSYLNCDDN3JJWNHCKTAIGXSDW2ZG1PDIAXPQG"><h2>Waived Violations</h2></a><a name="IDL2FED3XSAFQHERL2FJHY3PCQPERV1SYZN1JQY0MKWFQVPC1J1BOI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Differential Pairs Uncoupled Length using the Gap Constraints (Min=8mil) (Max=50mil) (Prefered=8mil)  and Width Constraints (Min=4mil) (Max=50mil) (Prefered=4mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1229.678mil|Location2.X=4315.458mil|Location1.Y=3559.509mil|Location2.Y=4202.694mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1229.678mil|Location2.X=4315.458mil|Location1.Y=3559.509mil|Location2.Y=4202.694mil|Absolute=True">Differential Pairs Routing: Between Net RXP53 And Net RXP54 [Uncoupled Length = 1032.964mil], [Maximum Uncoupled Length = 1000mil]</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1229.678mil|Location2.X=4315.458mil|Location1.Y=3559.509mil|Location2.Y=4202.694mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1229.678mil|Location2.X=4315.458mil|Location1.Y=3559.509mil|Location2.Y=4202.694mil|Absolute=True">Differential Pairs Routing: Between Net RXP53 And Net RXP54 [Uncoupled Length = 1032.964mil], [Maximum Uncoupled Length = 1000mil]</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3822.686mil|Location2.X=3834.486mil|Location1.Y=3890.457mil|Location2.Y=3901.457mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3822.686mil|Location2.X=3834.486mil|Location1.Y=3890.457mil|Location2.Y=3901.457mil|Absolute=True">Differential Pairs Routing: Track (2473.143mil,2043mil)(2473.229mil,2042.914mil) on Top Layer Actual Width = 8mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3822.729mil|Location2.X=3833.729mil|Location1.Y=3834.675mil|Location2.Y=3845.675mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3822.729mil|Location2.X=3833.729mil|Location1.Y=3834.675mil|Location2.Y=3845.675mil|Absolute=True">Differential Pairs Routing: Track (2473.229mil,1970.568mil)(2473.229mil,2003.783mil) on Top Layer Actual Width = 8mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3823.356mil|Location2.X=3835.156mil|Location1.Y=3817.441mil|Location2.Y=3828.441mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3823.356mil|Location2.X=3835.156mil|Location1.Y=3817.441mil|Location2.Y=3828.441mil|Absolute=True">Differential Pairs Routing: Track (2473.229mil,1970.568mil)(2474.483mil,1969.314mil) on Top Layer Actual Width = 8mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3822.729mil|Location2.X=3833.729mil|Location1.Y=3870.848mil|Location2.Y=3881.848mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3822.729mil|Location2.X=3833.729mil|Location1.Y=3870.848mil|Location2.Y=3881.848mil|Absolute=True">Differential Pairs Routing: Track (2473.229mil,2003.783mil)(2473.229mil,2042.914mil) on Top Layer Actual Width = 8mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4210.27mil|Location2.X=4220.671mil|Location1.Y=3511.057mil|Location2.Y=3518.057mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4210.27mil|Location2.X=4220.671mil|Location1.Y=3511.057mil|Location2.Y=3518.057mil|Absolute=True">Differential Pairs Routing: Track (2837.921mil,1661.557mil)(2879.62mil,1661.557mil) on Bottom Layer Actual Width = 4mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4238.849mil|Location2.X=4248.204mil|Location1.Y=3518.787mil|Location2.Y=3525.787mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4238.849mil|Location2.X=4248.204mil|Location1.Y=3518.787mil|Location2.Y=3525.787mil|Absolute=True">Differential Pairs Routing: Track (2879.62mil,1661.557mil)(2895.079mil,1677.016mil) on Bottom Layer Actual Width = 4mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4246.771mil|Location2.X=4257.171mil|Location1.Y=3526.516mil|Location2.Y=3533.516mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4246.771mil|Location2.X=4257.171mil|Location1.Y=3526.516mil|Location2.Y=3533.516mil|Absolute=True">Differential Pairs Routing: Track (2895.079mil,1677.016mil)(2895.463mil,1677.016mil) on Bottom Layer Actual Width = 4mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2207.972mil|Location2.X=2219.372mil|Location1.Y=6427.74mil|Location2.Y=6436.74mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2207.972mil|Location2.X=2219.372mil|Location1.Y=6427.74mil|Location2.Y=6436.74mil|Absolute=True">Differential Pairs Routing: Track (854.2mil,4579.24mil)(860.744mil,4579.24mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2208.852mil|Location2.X=2220.252mil|Location1.Y=6486.803mil|Location2.Y=6495.803mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2208.852mil|Location2.X=2220.252mil|Location1.Y=6486.803mil|Location2.Y=6495.803mil|Absolute=True">Differential Pairs Routing: Track (855.08mil,4638.303mil)(861.624mil,4638.303mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2221.436mil|Location2.X=2231.861mil|Location1.Y=6535.316mil|Location2.Y=6544.316mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2221.436mil|Location2.X=2231.861mil|Location1.Y=6535.316mil|Location2.Y=6544.316mil|Absolute=True">Differential Pairs Routing: Track (859.247mil,4698.505mil)(882.625mil,4675.127mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2221.436mil|Location2.X=2231.79mil|Location1.Y=6558.694mil|Location2.Y=6567.694mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2221.436mil|Location2.X=2231.79mil|Location1.Y=6558.694mil|Location2.Y=6567.694mil|Absolute=True">Differential Pairs Routing: Track (859.247mil,4698.505mil)(882.625mil,4721.883mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2222.2mil|Location2.X=2232.625mil|Location1.Y=6416.783mil|Location2.Y=6425.783mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2222.2mil|Location2.X=2232.625mil|Location1.Y=6416.783mil|Location2.Y=6425.783mil|Absolute=True">Differential Pairs Routing: Track (860.744mil,4579.24mil)(882.658mil,4557.326mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2222.624mil|Location2.X=2232.978mil|Location1.Y=6497.304mil|Location2.Y=6506.304mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2222.624mil|Location2.X=2232.978mil|Location1.Y=6497.304mil|Location2.Y=6506.304mil|Absolute=True">Differential Pairs Routing: Track (861.624mil,4638.303mil)(882.625mil,4659.305mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2222.877mil|Location2.X=2231.877mil|Location1.Y=6727.511mil|Location2.Y=6736.511mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2222.877mil|Location2.X=2231.877mil|Location1.Y=6727.511mil|Location2.Y=6736.511mil|Absolute=True">Differential Pairs Routing: Track (872.377mil,4861.573mil)(872.377mil,4896.449mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2228.001mil|Location2.X=2238.426mil|Location1.Y=6704.949mil|Location2.Y=6713.949mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2228.001mil|Location2.X=2238.426mil|Location1.Y=6704.949mil|Location2.Y=6713.949mil|Absolute=True">Differential Pairs Routing: Track (872.377mil,4861.573mil)(882.625mil,4851.325mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2228.815mil|Location2.X=2237.815mil|Location1.Y=6248.449mil|Location2.Y=6257.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2228.815mil|Location2.X=2237.815mil|Location1.Y=6248.449mil|Location2.Y=6257.449mil|Absolute=True">Differential Pairs Routing: Track (878.315mil,4392.543mil)(878.315mil,4407.354mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2230.986mil|Location2.X=2241.34mil|Location1.Y=6258.026mil|Location2.Y=6267.026mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2230.986mil|Location2.X=2241.34mil|Location1.Y=6258.026mil|Location2.Y=6267.026mil|Absolute=True">Differential Pairs Routing: Track (878.315mil,4407.354mil)(882.658mil,4411.697mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2233.125mil|Location2.X=2242.125mil|Location1.Y=6515.716mil|Location2.Y=6524.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2233.125mil|Location2.X=2242.125mil|Location1.Y=6515.716mil|Location2.Y=6524.716mil|Absolute=True">Differential Pairs Routing: Track (882.625mil,4659.305mil)(882.625mil,4675.127mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2233.125mil|Location2.X=2242.125mil|Location1.Y=6635.104mil|Location2.Y=6644.104mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2233.125mil|Location2.X=2242.125mil|Location1.Y=6635.104mil|Location2.Y=6644.104mil|Absolute=True">Differential Pairs Routing: Track (882.625mil,4721.883mil)(882.625mil,4851.325mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2233.158mil|Location2.X=2242.158mil|Location1.Y=6333.011mil|Location2.Y=6342.011mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2233.158mil|Location2.X=2242.158mil|Location1.Y=6333.011mil|Location2.Y=6342.011mil|Absolute=True">Differential Pairs Routing: Track (882.658mil,4411.697mil)(882.658mil,4557.326mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2244.125mil|Location2.X=2253.125mil|Location1.Y=6516.241mil|Location2.Y=6525.241mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2244.125mil|Location2.X=2253.125mil|Location1.Y=6516.241mil|Location2.Y=6525.241mil|Absolute=True">Differential Pairs Routing: Track (893.625mil,4660.355mil)(893.625mil,4675.127mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2255.361mil|Location2.X=2265.786mil|Location1.Y=6497.619mil|Location2.Y=6506.619mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2255.361mil|Location2.X=2265.786mil|Location1.Y=6497.619mil|Location2.Y=6506.619mil|Absolute=True">Differential Pairs Routing: Track (893.625mil,4660.355mil)(916.097mil,4637.883mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2255.814mil|Location2.X=2266.168mil|Location1.Y=6535.316mil|Location2.Y=6544.316mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2255.814mil|Location2.X=2266.168mil|Location1.Y=6535.316mil|Location2.Y=6544.316mil|Absolute=True">Differential Pairs Routing: Track (893.625mil,4675.127mil)(917.003mil,4698.505mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2244.125mil|Location2.X=2253.125mil|Location1.Y=6634.914mil|Location2.Y=6643.914mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2244.125mil|Location2.X=2253.125mil|Location1.Y=6634.914mil|Location2.Y=6643.914mil|Absolute=True">Differential Pairs Routing: Track (893.625mil,4721.883mil)(893.625mil,4850.945mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2255.814mil|Location2.X=2266.239mil|Location1.Y=6558.694mil|Location2.Y=6567.694mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2255.814mil|Location2.X=2266.239mil|Location1.Y=6558.694mil|Location2.Y=6567.694mil|Absolute=True">Differential Pairs Routing: Track (893.625mil,4721.883mil)(917.003mil,4698.505mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2249.249mil|Location2.X=2259.603mil|Location1.Y=6704.569mil|Location2.Y=6713.569mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2249.249mil|Location2.X=2259.603mil|Location1.Y=6704.569mil|Location2.Y=6713.569mil|Absolute=True">Differential Pairs Routing: Track (893.625mil,4850.945mil)(903.873mil,4861.193mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2244.158mil|Location2.X=2253.158mil|Location1.Y=6333.399mil|Location2.Y=6342.399mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2244.158mil|Location2.X=2253.158mil|Location1.Y=6333.399mil|Location2.Y=6342.399mil|Absolute=True">Differential Pairs Routing: Track (893.658mil,4411.697mil)(893.658mil,4558.101mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2246.329mil|Location2.X=2256.754mil|Location1.Y=6258.025mil|Location2.Y=6267.025mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2246.329mil|Location2.X=2256.754mil|Location1.Y=6258.025mil|Location2.Y=6267.025mil|Absolute=True">Differential Pairs Routing: Track (893.658mil,4411.697mil)(898mil,4407.354mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2254.937mil|Location2.X=2265.291mil|Location1.Y=6417.38mil|Location2.Y=6426.38mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2254.937mil|Location2.X=2265.291mil|Location1.Y=6417.38mil|Location2.Y=6426.38mil|Absolute=True">Differential Pairs Routing: Track (893.658mil,4558.101mil)(915.217mil,4579.66mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2248.5mil|Location2.X=2257.5mil|Location1.Y=6248.449mil|Location2.Y=6257.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2248.5mil|Location2.X=2257.5mil|Location1.Y=6248.449mil|Location2.Y=6257.449mil|Absolute=True">Differential Pairs Routing: Track (898mil,4392.543mil)(898mil,4407.354mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2254.373mil|Location2.X=2263.373mil|Location1.Y=6727.321mil|Location2.Y=6736.321mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2254.373mil|Location2.X=2263.373mil|Location1.Y=6727.321mil|Location2.Y=6736.321mil|Absolute=True">Differential Pairs Routing: Track (903.873mil,4861.193mil)(903.873mil,4896.449mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2268.983mil|Location2.X=2280.383mil|Location1.Y=6428.16mil|Location2.Y=6437.16mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2268.983mil|Location2.X=2280.383mil|Location1.Y=6428.16mil|Location2.Y=6437.16mil|Absolute=True">Differential Pairs Routing: Track (915.217mil,4579.66mil)(921.75mil,4579.66mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2269.863mil|Location2.X=2281.263mil|Location1.Y=6486.383mil|Location2.Y=6495.383mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2269.863mil|Location2.X=2281.263mil|Location1.Y=6486.383mil|Location2.Y=6495.383mil|Absolute=True">Differential Pairs Routing: Track (916.097mil,4637.883mil)(922.63mil,4637.883mil) on Top Layer Actual Width = 6mil, Target Width = 9mil</acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:45:00 PM</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDAR1QNON5BCJ2KPW4Z2OXGHZEDC2ULDVP4KREGWL5MYJCYNE5LFFN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Matched Lengths(Tolerance=100mil) (InDifferentialPairClass('RX_DIFF'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1202.169mil|Location2.X=4353.34mil|Location1.Y=3543mil|Location2.Y=3930.203mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1202.169mil|Location2.X=4353.34mil|Location1.Y=3543mil|Location2.Y=3930.203mil|Absolute=True">Matched Net Lengths: Between Net RXP55 And Net RXP56 Actual Difference against RXP55 is: 155.053mil, Tolerance : 100mil. </acronym></a><br>Waived by Kavikannan R at 1/31/2024 3:07:55 PM</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDAM4GRFBFAJQ2NOPL4IJKWVNBZCOK2AE4KIP0IDIYJ0R4TKUCB30I"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = 5mil ) (HasFootprint('0201*') or HasFootprint('0402*') or HasFootprint('0508') or HasFootprint('0603*') or HasFootprint('0612') or HasFootprint('0805*') or HasFootprint('0815*') or HasFootprint('0830*') or HasFootprint('1206*') or HasFootprint('1210*') or HasFootprint('1808*') or HasFootprint('1812*') or HasFootprint('1825*') or HasFootprint('2010*') or HasFootprint('2220*') or HasFootprint('2225*') or HasFootprint('2512*') or HasFootprint('2728*') or HasFootprint('3518*')),(HasFootprint('0201*') or HasFootprint('0402*') or HasFootprint('0508') or HasFootprint('0603*') or HasFootprint('0612') or HasFootprint('0805*') or HasFootprint('0815*') or HasFootprint('0830*') or HasFootprint('1206*') or HasFootprint('1210*') or HasFootprint('1808*') or HasFootprint('1812*') or HasFootprint('1825*') or HasFootprint('2010*') or HasFootprint('2220*') or HasFootprint('2225*') or HasFootprint('2512*') or HasFootprint('2728*') or HasFootprint('3518*')) </th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4016.084mil|Location2.X=4022.334mil|Location1.Y=3595.883mil|Location2.Y=3602.133mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4016.084mil|Location2.X=4022.334mil|Location1.Y=3595.883mil|Location2.Y=3602.133mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component R23-CRCW0402100RFKED (2676mil,1769.63mil) on Bottom Layer And SMT Small Component R273-Resistor (2676mil,1722.387mil) on Bottom Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4016.084mil|Location2.X=4022.334mil|Location1.Y=3643.127mil|Location2.Y=3649.377mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4016.084mil|Location2.X=4022.334mil|Location1.Y=3643.127mil|Location2.Y=3649.377mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component R23-CRCW0402100RFKED (2676mil,1769.63mil) on Bottom Layer And SMT Small Component R274-Resistor (2676mil,1816.874mil) on Bottom Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDKZXMBY0M5XDMDFEINS2VEKXDDBNIOWFBG2WSVYGQADN2OTTLXN0M"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = 5mil ) (IsThruComponent),(IsSMTComponent) </th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2964.278mil|Location2.X=2970.528mil|Location1.Y=1908.218mil|Location2.Y=1914.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2964.278mil|Location2.X=2970.528mil|Location1.Y=1908.218mil|Location2.Y=1914.468mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between Small Component J13-TSW-103-07-G-S (1599.91mil,73.001mil) on Top Layer And SMT Small Component SH-J2-QPC02SXGN-RC (1599.91mil,120.022mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 2/6/2024 3:53:35 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3476.368mil|Location2.X=3482.618mil|Location1.Y=1908.218mil|Location2.Y=1914.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3476.368mil|Location2.X=3482.618mil|Location1.Y=1908.218mil|Location2.Y=1914.468mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between Small Component J16-TSW-103-07-G-S (2112mil,73.001mil) on Top Layer And SMT Small Component SH-J3-QPC02SXGN-RC (2112mil,120.022mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 2/6/2024 3:53:35 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2452.19mil|Location2.X=2458.44mil|Location1.Y=1908.707mil|Location2.Y=1914.957mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2452.19mil|Location2.X=2458.44mil|Location1.Y=1908.707mil|Location2.Y=1914.957mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between Small Component J7-TSW-103-07-G-S (1087.82mil,73.001mil) on Top Layer And SMT Small Component SH-J1-QPC02SXGN-RC (1087.82mil,121mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 2/6/2024 3:53:35 PM</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDJ0ROE1QT53NAPT32F2PXMB0JFDQCBTNQQGFTLJBCZHTEZYIRFBXD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Component Clearance Constraint ( Horizontal Gap = 5mil, Vertical Gap = 5mil ) (All),(All) </th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2001.989mil|Location2.X=2009.313mil|Location1.Y=2893.862mil|Location2.Y=2901.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2001.989mil|Location2.X=2009.313mil|Location1.Y=2893.862mil|Location2.Y=2901.593mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component R238-RG1005P-101-B-T5 (637.339mil,1066.247mil) on Top Layer And SMT Small Component TP104-TESTPOINT (691mil,1003.46mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2087.275mil|Location2.X=2093.525mil|Location1.Y=2299.484mil|Location2.Y=2305.734mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2087.275mil|Location2.X=2093.525mil|Location1.Y=2299.484mil|Location2.Y=2305.734mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component TP102-TESTPOINT (777mil,415mil) on Top Layer And SMT Small Component TP106-TESTPOINT (693.801mil,409.709mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2102.342mil|Location2.X=2106.675mil|Location1.Y=2600.733mil|Location2.Y=2605.067mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2102.342mil|Location2.X=2106.675mil|Location1.Y=2600.733mil|Location2.Y=2605.067mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component TP103-TESTPOINT (787.625mil,710mil) on Top Layer And SMT Small Component TP107-TESTPOINT (709.609mil,725mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5037.052mil|Location2.X=5041.385mil|Location1.Y=3090.671mil|Location2.Y=3095.004mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5037.052mil|Location2.X=5041.385mil|Location1.Y=3090.671mil|Location2.Y=3095.004mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component TP56-TESTPOINT (3650.598mil,1273.458mil) on Top Layer And SMT Small Component TP60-TESTPOINT (3682.861mil,1199.937mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5005.933mil|Location2.X=5010.266mil|Location1.Y=4178.733mil|Location2.Y=4183.067mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5005.933mil|Location2.X=5010.266mil|Location1.Y=4178.733mil|Location2.Y=4183.067mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component TP63-TESTPOINT (3693mil,2366mil) on Top Layer And SMT Small Component TP64-TESTPOINT (3669.532mil,2288mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2474.262mil|Location2.X=2480.512mil|Location1.Y=2923.775mil|Location2.Y=2930.025mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2474.262mil|Location2.X=2480.512mil|Location1.Y=2923.775mil|Location2.Y=2930.025mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component TP69-TESTPOINT (1163mil,1064.153mil) on Top Layer And SMT Small Component TP70-TESTPOINT (1081.774mil,1034mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2485.059mil|Location2.X=2489.393mil|Location1.Y=2673.733mil|Location2.Y=2678.067mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2485.059mil|Location2.X=2489.393mil|Location1.Y=2673.733mil|Location2.Y=2678.067mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component TP7 (1172.126mil,830mil) on Top Layer And SMT Small Component TP73-TESTPOINT (1104.086mil,783mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2435.864mil|Location2.X=2440.197mil|Location1.Y=3194.387mil|Location2.Y=3198.721mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2435.864mil|Location2.X=2440.197mil|Location1.Y=3194.387mil|Location2.Y=3198.721mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component TP71-TESTPOINT (1081.447mil,1303.654mil) on Top Layer And SMT Small Component TP72-TESTPOINT (1122.931mil,1376.217mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2417.019mil|Location2.X=2421.352mil|Location1.Y=2612.142mil|Location2.Y=2616.475mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2417.019mil|Location2.X=2421.352mil|Location1.Y=2612.142mil|Location2.Y=2616.475mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component TP73-TESTPOINT (1104.086mil,783mil) on Top Layer And SMT Small Component TP75-TESTPOINT (1054.864mil,721.408mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2428.151mil|Location2.X=2432.484mil|Location1.Y=2342.733mil|Location2.Y=2347.067mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2428.151mil|Location2.X=2432.484mil|Location1.Y=2342.733mil|Location2.Y=2347.067mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component TP74-TESTPOINT (1115.218mil,522.638mil) on Top Layer And SMT Small Component TP76-TESTPOINT (1075.782mil,452mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2452.311mil|Location2.X=2456.645mil|Location1.Y=4324.581mil|Location2.Y=4328.915mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2452.311mil|Location2.X=2456.645mil|Location1.Y=4324.581mil|Location2.Y=4328.915mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component TP77-TESTPOINT (1079.309mil,2433.848mil) on Top Layer And SMT Small Component TP81-TESTPOINT (1139.378mil,2486.413mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2397.933mil|Location2.X=2402.266mil|Location1.Y=3431.835mil|Location2.Y=3436.168mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2397.933mil|Location2.X=2402.266mil|Location1.Y=3431.835mil|Location2.Y=3436.168mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component TP78-TESTPOINT (1085mil,1607.609mil) on Top Layer And SMT Small Component TP82-TESTPOINT (1039.621mil,1541.102mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2428.439mil|Location2.X=2432.772mil|Location1.Y=4022.03mil|Location2.Y=4026.363mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2428.439mil|Location2.X=2432.772mil|Location1.Y=4022.03mil|Location2.Y=4026.363mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SMT Small Component TP79-TESTPOINT (1079mil,2131.297mil) on Top Layer And SMT Small Component TP83-TESTPOINT (1115.505mil,2201.776mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2717.579mil|Location2.X=2723.829mil|Location1.Y=5282.983mil|Location2.Y=5289.233mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2717.579mil|Location2.X=2723.829mil|Location1.Y=5282.983mil|Location2.Y=5289.233mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SOIC Component U14_1-ISO7741DWR (1176mil,3567.071mil) on Bottom Layer And SOIC Component U14-ISO7841DWW (1174.602mil,3559.341mil) on Bottom Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2279.573mil|Location2.X=2285.823mil|Location1.Y=5306.215mil|Location2.Y=5312.465mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2279.573mil|Location2.X=2285.823mil|Location1.Y=5306.215mil|Location2.Y=5312.465mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SOIC Component U17_1-ISO7741DWR (736.768mil,3590.304mil) on Bottom Layer And SOIC Component U17-ISO7841DWW (736.535mil,3563.229mil) on Bottom Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2056.762mil|Location2.X=2061.096mil|Location1.Y=5270.864mil|Location2.Y=5275.198mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2056.762mil|Location2.X=2061.096mil|Location1.Y=5270.864mil|Location2.Y=5275.198mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SOIC Component U6_1-ISO7741DWR (687mil,3590.071mil) on Top Layer And SOIC Component U6-ISO7841DWW (686.536mil,3563.229mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2439.912mil|Location2.X=2444.245mil|Location1.Y=5309.784mil|Location2.Y=5314.118mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\00_JOBS_2023\29_DC309 APL Final Spin\DESIGN\020624\DC309 (2-5-2024 6-58-28 PM)\DC309A_PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2439.912mil|Location2.X=2444.245mil|Location1.Y=5309.784mil|Location2.Y=5314.118mil|Absolute=True">Component Clearance Constraint: (Collision &lt; 5mil) Between SOIC Component U8_1-ISO7740FDWR (1226mil,3567.071mil) on Top Layer And SOIC Component U8-ISO7840FDWWR (1225.602mil,3566.05mil) on Top Layer </acronym></a><br>Waived by Kavikannan R at 1/5/2024 3:38:08 PM</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
